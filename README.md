@@ -1,8 +1,10 @@
 # 🛡️ Automated Recon & Subdomain Discovery Tool
 
 **Author:** Bela Agustina
+
 **Project Category:** Cyber Security – Information Gathering Automation
-**Repository:** `recon-automation-belaagustina`
+
+**Repository:** `recon-automation-bella`
 
 ---
 
