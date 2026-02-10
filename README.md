@@ -107,6 +107,23 @@ sudo apt update
 sudo apt install golang-go -y
 ```
 
+### Install Subfinder
+
+```bash
+go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
+```
+
+### Install Httpx
+
+```
+go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
+```
+
+Tambahkan PATH
+```
+export PATH=$PATH:$(go env GOPATH)/bin
+```
+
 ### Install Anew
 
 ```bash
