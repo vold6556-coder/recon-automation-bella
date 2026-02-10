@@ -166,7 +166,7 @@ sample.net
 | all-subdomains.txt | Semua subdomain unik     |
 | all-live.txt       | Host aktif + status code |
 | domain-summary.txt | Statistik per domain     |
-| example.com       | berisi subs.txt dan live.tx khusus domain (example.com)               |
+| example.com       | berisi subs.txt dan live.txt khusus domain (example.com)               |
 | progress.log       | Log proses               |
 | errors.log         | Log error                |
 
