@@ -59,19 +59,26 @@ recon-automation-belaagustina/
 │
 └── README.md                    # Dokumentasi project
 
-
 ```
-
 ### 📌 Penjelasan Struktur
 
-| Folder/File               | Fungsi                                            |
-| ------------------------- | ------------------------------------------------- |
-| **subs.txt (per domain)** | Hasil enumerasi subdomain khusus domain tersebut  |
-| **live.txt (per domain)** | Host aktif dari domain tersebut                   |
-| **all-subdomains.txt**    | Gabungan semua subdomain unik dari seluruh target |
-| **all-live.txt**          | Gabungan semua live hosts                         |
-| **domain-summary.txt**    | Tabel statistik per domain                        |
-| **logs/**                 | Log aktivitas dan error selama scanning           |
+| Path                                                                                                          | Fungsi                             |
+| ------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| 📂 [`input/`](https://github.com/vold6556-coder/recon-automation-bella/tree/main/input)                        | Berisi daftar target domain        |
+| 📄 [`domains.txt`](https://github.com/vold6556-coder/recon-automation-bella/blob/main/input/domains.txt)       | Input domain (1 domain per baris)  |
+| 📂 [`scripts/`](https://github.com/vold6556-coder/recon-automation-bella/tree/main/scripts)                    | Folder script utama                |
+| 📄 [`recon-auto.sh`](https://github.com/vold6556-coder/recon-automation-bella/blob/main/scripts/recon-auto.sh) | Engine automation recon            |
+| 📂 [`output/`](https://github.com/vold6556-coder/recon-automation-bella/tree/main/output)                      | Semua hasil scan tersimpan di sini |
+| 📄 `all-subdomains.txt`                                                                                       | Gabungan semua subdomain unik      |
+| 📄 `all-live.txt`                                                                                             | Gabungan semua host aktif          |
+| 📄 `domain-summary.txt`                                                                                       | Statistik jumlah temuan per domain |
+|   📂 `example.com`                                                                                                    |Hasil Khusus Domain (example.com)               |
+|   📄 `subs.txt`                                                                                       |  Hasil enumerasi subdomain khusus domain tersebut (example.com) |
+|   📄 `live.txt`                                                                                       | Host aktif dari domain tersebut (example.com) |
+| 📂 [`logs/`](https://github.com/vold6556-coder/recon-automation-bella/tree/main/logs)                                                                                                    | Log proses dan error               |
+| 📄 `progress.log`                                                                                       | Log aktivitas script |
+| 📄 `errors.log`                                                                                       | Log error kalau ada trouble |
+| 📄 [`README.md`](https://github.com/vold6556-coder/recon-automation-bella/blob/main/README.md)                 | Dokumentasi project                |
 
 Struktur ini memisahkan hasil **per target** sekaligus menyediakan **rekap global**, seperti workflow profesional di environment SOC/pentest.
 
@@ -114,7 +121,7 @@ export PATH=$PATH:$(go env GOPATH)/bin
 ## 🚀 4. Cara Menjalankan Script
 
 ```bash
-cd ~/recon-automation-belaagustina
+cd ~/recon-automation-bella
 chmod +x scripts/recon-auto.sh
 ./scripts/recon-auto.sh
 ```
@@ -142,6 +149,7 @@ sample.net
 | all-subdomains.txt | Semua subdomain unik     |
 | all-live.txt       | Host aktif + status code |
 | domain-summary.txt | Statistik per domain     |
+| example.com       | berisi subs.txt dan live.tx khusus domain (example.com)               |
 | progress.log       | Log proses               |
 | errors.log         | Log error                |
 
@@ -152,14 +160,14 @@ sample.net
 | Modul                      | Fungsi                                                                                                       |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | **Module Check & Install** | Mengecek tools via `command -v`. Jika tidak ada, script menjalankan `go install` dan mengatur PATH otomatis. |
-| **Environment Fix**        | `unset GOROOT` untuk mencegah konflik instalasi Go lama.                                                     |
-| **Execution Engine**       | Menggunakan `gnome-terminal` agar proses berjalan di jendela baru.                                           |
-| **Enumeration Engine**     | `subfinder` mencari subdomain secara pasif.                                                                  |
-| **Data Filtering**         | `anew` mencegah duplikasi subdomain.                                                                         |
+| **Environment Fix**        | `unset GOROOT` untuk mencegah konflik instalasi Go lama                                                     |
+| **Execution Engine**       | Menggunakan `gnome-terminal` agar proses berjalan di jendela baru. (bisa diganti xterm juga kalau mau yg lebih ringan, di script sudah tersedia tinggal dihapus saja commentnya)                                           |
+| **Enumeration Engine**     | `subfinder` mencari subdomain secara pasif                                                                  |
+| **Data Filtering**         | `anew` mencegah duplikasi subdomain                                                                         |
 | **Live Host Detection**    | `httpx` mengecek host aktif beserta status HTTP dan title.                                                   |
 | **Logging System**         | Semua proses dicatat dengan timestamp via `tee`.                                                             |
-| **Error Handling**         | stderr diarahkan ke `logs/errors.log`.                                                                       |
-| **Reporting Engine**       | `awk`, `wc -l`, dan `printf` menghasilkan tabel statistik rapi.                                              |
+| **Error Handling**         | stderr diarahkan ke `logs/errors.log`                                                                       |
+| **Reporting Engine**       | `awk`, `wc -l`, dan `printf` menghasilkan tabel statistik rapih                                             |
 
 ---
 
